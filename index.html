@@ -1,401 +1,379 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A'ANG KURNIA - Interactive Portfolio</title>
-    <style>
-        /* Base Skeuomorphic Theme */
-        :root {
-            --bg-color: #e0e5ec;
-            --shadow-light: #ffffff;
-            --shadow-dark: #a3b1c6;
-            --text-main: #4a4a4a;
-            --text-highlight: #2c3e50;
-            --accent: #5a7b9c;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A'ang Kurnia, Civil Engineer with experience in civil and structural site supervision, quality inspection, quantity verification, and project reporting.">
+  <meta name="theme-color" content="#f4f2ea">
+  <title>A'ang Kurnia | Civil Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f2ea;
+      --ink: #17231f;
+      --muted: #5e6963;
+      --line: #c9cec4;
+      --green: #285b48;
+      --lime: #d8ed6a;
+      --clay: #d8754d;
+      --white: #fffefa;
+      --display: "Barlow Condensed", Impact, sans-serif;
+      --body: "DM Sans", "Segoe UI", sans-serif;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--text-main);
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 900px;
-            background: var(--bg-color);
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 15px 15px 30px var(--shadow-dark), -15px -15px 30px var(--shadow-light);
-            box-sizing: border-box;
-        }
-
-        /* Profile Header Section */
-        .header {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 2px solid rgba(255,255,255,0.5);
-            box-shadow: 0 10px 10px -10px var(--shadow-dark);
-        }
-
-        .profile-img-container {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            padding: 8px;
-            background: var(--bg-color);
-            box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
-        .profile-img-container img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.2), inset -4px -4px 8px rgba(255,255,255,0.7);
-        }
-
-        .header-info h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.5em;
-            color: var(--text-highlight);
-            text-shadow: 2px 2px 4px var(--shadow-light), -2px -2px 4px var(--shadow-dark);
-            letter-spacing: 1px;
-        }
-
-        .contact-card {
-            background: var(--bg-color);
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
-            font-size: 0.95em;
-            line-height: 1.8;
-            word-wrap: break-word;
-        }
-
-        /* Interactive Contact Links */
-        .contact-link {
-            text-decoration: none;
-            color: var(--text-highlight);
-            font-weight: 600;
-            transition: color 0.3s ease;
-            display: inline-block;
-        }
-
-        .contact-link:hover {
-            color: var(--accent);
-        }
-
-        /* Navigation Menu (Interactive Buttons) */
-        .nav-menu {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .nav-btn {
-            background: var(--bg-color);
-            border: none;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 1em;
-            font-weight: bold;
-            color: var(--text-main);
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
-            outline: none;
-            flex: 1 1 auto; /* Allows buttons to grow if needed */
-            text-align: center;
-        }
-
-        /* Button Active / Clicked State */
-        .nav-btn.active, .nav-btn:active {
-            box-shadow: inset 6px 6px 12px var(--shadow-dark), inset -6px -6px 12px var(--shadow-light);
-            color: var(--accent);
-        }
-
-        /* Content Sections */
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .content-card {
-            background: var(--bg-color);
-            padding: 25px;
-            border-radius: 20px;
-            margin-bottom: 25px;
-            box-shadow: inset 8px 8px 16px var(--shadow-dark), inset -8px -8px 16px var(--shadow-light);
-            line-height: 1.7;
-            box-sizing: border-box;
-        }
-
-        h2 {
-            color: var(--text-highlight);
-            margin-top: 0;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            font-size: 1.3em;
-            border-bottom: 1px solid rgba(163,177,198,0.3);
-            padding-bottom: 10px;
-        }
-
-        .job-title {
-            font-weight: bold;
-            font-size: 1.1em;
-            color: var(--accent);
-            margin-top: 15px;
-        }
-
-        .company-name {
-            font-style: italic;
-            font-size: 0.95em;
-            margin-bottom: 10px;
-        }
-
-        ul { padding-left: 20px; margin-top: 5px; }
-        li { margin-bottom: 8px; }
-
-        .skills-tag {
-            display: inline-block;
-            background: var(--bg-color);
-            padding: 8px 18px;
-            margin: 6px 4px;
-            border-radius: 8px;
-            font-size: 0.9em;
-            font-weight: 500;
-            box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
-        }
-
-        /* --- FIT TO HANDPHONE (RESPONSIVE DESIGN) --- */
-        @media (max-width: 768px) {
-            body {
-                padding: 15px 10px; /* Jarak luar dikurangi agar pas di layar HP */
-            }
-
-            .container {
-                padding: 25px 15px; /* Jarak dalam kotak dikurangi */
-                border-radius: 20px;
-            }
-
-            .header {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-                padding-bottom: 20px;
-            }
-
-            .profile-img-container {
-                width: 120px; /* Foto profil sedikit diperkecil */
-                height: 120px;
-            }
-
-            .header-info h1 {
-                font-size: 1.8em; /* Ukuran teks judul diperkecil */
-            }
-
-            .contact-card {
-                font-size: 0.85em;
-                padding: 12px;
-            }
-
-            .nav-menu {
-                gap: 10px;
-            }
-
-            .nav-btn {
-                padding: 10px 15px;
-                font-size: 0.85em;
-                flex: 1 1 45%; /* Tombol dibagi jadi dua kolom di HP */
-            }
-
-            .content-card {
-                padding: 15px; /* Jarak dalam teks konten dikurangi */
-            }
-
-            h2 {
-                font-size: 1.1em;
-            }
-
-            .job-title {
-                font-size: 1em;
-            }
-
-            .skills-tag {
-                padding: 6px 12px;
-                font-size: 0.85em;
-            }
-        }
-    </style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--body);
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .shell { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 76px;
+      border-bottom: 1px solid var(--line);
+    }
+    .wordmark {
+      color: var(--green);
+      font-family: var(--display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .nav { display: flex; gap: 26px; }
+    .nav a {
+      font-size: .84rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .nav a:hover, .text-link:hover { color: var(--green); text-decoration: underline; text-underline-offset: 4px; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+      align-items: center;
+      gap: 7vw;
+      padding-block: clamp(64px, 10vw, 126px);
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow, .section-kicker {
+      margin: 0 0 14px;
+      color: var(--green);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 720px;
+      margin-bottom: 22px;
+      font-family: var(--display);
+      font-size: clamp(3.9rem, 8vw, 7.7rem);
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: .88;
+      text-transform: uppercase;
+    }
+    h1 span { color: var(--green); }
+    .hero-copy {
+      max-width: 660px;
+      margin-bottom: 28px;
+      color: #3e4943;
+      font-size: clamp(1rem, 1.5vw, 1.18rem);
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 18px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--white);
+      font-size: .86rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .18s ease, color .18s ease, transform .18s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: var(--green); }
+    .button.secondary { background: transparent; color: var(--ink); }
+    .button.secondary:hover { background: var(--lime); }
+    .portrait-wrap {
+      position: relative;
+      width: min(100%, 320px);
+      justify-self: end;
+      padding: 0 14px 14px 0;
+    }
+    .portrait-wrap::before {
+      position: absolute;
+      z-index: 0;
+      inset: 14px 0 0 14px;
+      background: var(--lime);
+      content: "";
+    }
+    .portrait {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center 28%;
+      background: #d6d8cf;
+      filter: saturate(.82);
+    }
+    .portrait-note {
+      position: absolute;
+      z-index: 2;
+      right: -8px;
+      bottom: 28px;
+      padding: 9px 12px;
+      background: var(--clay);
+      color: #1d2722;
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      transform: rotate(-3deg);
+    }
+    .focus-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+    .focus-item { padding: 22px 18px 22px 0; }
+    .focus-item + .focus-item { padding-left: 18px; border-left: 1px solid var(--line); }
+    .focus-item strong { display: block; font-size: .88rem; }
+    .focus-item span { color: var(--muted); font-size: .78rem; }
+    .section { padding-block: clamp(58px, 8vw, 96px); border-bottom: 1px solid var(--line); }
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(180px, .55fr) 1fr;
+      gap: 32px;
+      margin-bottom: 42px;
+    }
+    h2 {
+      margin-bottom: 0;
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 700;
+      line-height: .95;
+      text-transform: uppercase;
+    }
+    .section-intro { max-width: 570px; margin: 4px 0 0; color: var(--muted); }
+    .experience-list { border-top: 1px solid var(--line); }
+    .experience {
+      display: grid;
+      grid-template-columns: minmax(150px, .38fr) 1fr;
+      gap: 32px;
+      padding-block: 25px;
+      border-bottom: 1px solid var(--line);
+    }
+    .date { color: var(--green); font-size: .8rem; font-weight: 700; }
+    .experience h3 { margin-bottom: 3px; font-size: 1.05rem; }
+    .company { margin-bottom: 12px; color: var(--muted); font-size: .87rem; }
+    .experience ul { margin: 0; padding-left: 18px; }
+    .experience li { margin-bottom: 6px; color: #3f4943; font-size: .91rem; }
+    .education-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      padding-block: 20px;
+      border-top: 1px solid var(--line);
+    }
+    .education-row h3 { margin-bottom: 3px; font-size: 1rem; }
+    .education-row p { margin-bottom: 0; color: var(--muted); font-size: .88rem; }
+    .education-year { color: var(--green); font-size: .85rem; font-weight: 700; white-space: nowrap; }
+    .certificate-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+    }
+    .certificate {
+      display: flex;
+      min-height: 82px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 18px 16px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .certificate:nth-child(even) { padding-left: 18px; border-left: 1px solid var(--line); }
+    .certificate span:last-child { color: var(--green); font-size: .75rem; white-space: nowrap; }
+    .certificate:hover { color: var(--green); }
+    .training-note { margin: 18px 0 0; color: var(--muted); font-size: .82rem; }
+    .contact-band {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding-block: 52px;
+    }
+    .contact-band h2 { max-width: 520px; font-size: clamp(2.4rem, 5vw, 4rem); }
+    .contact-details { display: grid; gap: 8px; text-align: right; font-size: .9rem; }
+    .contact-details a { text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    footer { padding-block: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .75rem; }
+    :focus-visible { outline: 3px solid var(--clay); outline-offset: 3px; }
+    @media (max-width: 740px) {
+      .shell { width: min(100% - 32px, 560px); }
+      .topbar { align-items: flex-start; flex-direction: column; justify-content: center; gap: 7px; padding-block: 14px; }
+      .nav { width: 100%; gap: 17px; overflow-x: auto; padding-bottom: 2px; }
+      .nav a { flex: 0 0 auto; font-size: .78rem; }
+      .hero { grid-template-columns: 1fr; gap: 35px; padding-block: 58px; }
+      h1 { font-size: clamp(3.6rem, 17vw, 6rem); }
+      .portrait-wrap { width: min(70%, 280px); justify-self: start; margin-left: 4px; }
+      .focus-strip { grid-template-columns: repeat(2, 1fr); }
+      .focus-item { padding: 16px 12px 16px 0; }
+      .focus-item + .focus-item { padding-left: 12px; }
+      .focus-item:nth-child(3) { padding-left: 0; border-left: 0; }
+      .focus-item:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .section-heading { grid-template-columns: 1fr; gap: 16px; margin-bottom: 30px; }
+      .experience { grid-template-columns: 1fr; gap: 7px; }
+      .certificate-grid { grid-template-columns: 1fr; }
+      .certificate, .certificate:nth-child(even) { padding-inline: 0; border-left: 0; }
+      .contact-band { align-items: flex-start; flex-direction: column; }
+      .contact-details { text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
+  <header class="topbar shell">
+    <a class="wordmark" href="#top">A'ang Kurnia / Civil Engineer</a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-<div class="container">
-    
-    <!-- Profile Header -->
-    <div class="header">
-        <div class="profile-img-container">
-            <img src="https://raw.githubusercontent.com/Aang-hub-art/aang/main/foto-profil.png" alt="A'ang Kurnia Profile">
+  <main id="top">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">Civil &amp; Structural / Site Supervision / EPC Support</p>
+        <h1 id="hero-title">A'ang<br><span>Kurnia, S.T.</span></h1>
+        <p class="hero-copy">Civil Engineering graduate with hands-on experience supporting site supervision, structural quality inspections, drawing compliance, quantity and material verification, and project reporting. Safety-minded and ready to contribute to civil and structural delivery teams.</p>
+        <div class="actions">
+          <a class="button" href="mailto:goankproject027@gmail.com">Contact A'ang</a>
+          <a class="button secondary" href="CV_Aang_Kurnia_Siemens_Energy.pdf" download>Download tailored CV</a>
         </div>
-        <div class="header-info">
-            <h1>A'ANG KURNIA, S.T.</h1>
-            <div class="contact-card">
-                📍 Gg. Pesantren Jl. Juraganan RT 05/RW 08, Grogol Utara, Kebayoran Lama, South Jakarta <br>
-                <!-- Interaktif link ke WA -->
-                <a href="https://wa.me/6285717659289" class="contact-link" target="_blank">📱 +62857-1765-9289</a> | 
-                <!-- Interaktif link ke Email -->
-                <a href="mailto:goankproject027@gmail.com" class="contact-link">✉️ goankproject027@gmail.com</a>
-            </div>
-        </div>
-    </div>
+      </div>
+      <div class="portrait-wrap">
+        <img class="portrait" src="https://raw.githubusercontent.com/Aang-hub-art/aang/main/foto-profil.png" alt="Portrait of A'ang Kurnia" fetchpriority="high">
+        <span class="portrait-note">Field-focused / Safety-led</span>
+      </div>
+    </section>
 
-    <!-- Navigation Buttons -->
-    <div class="nav-menu">
-        <button class="nav-btn active" onclick="openTab('summary', this)">Summary</button>
-        <button class="nav-btn" onclick="openTab('experience', this)">Work Experience</button>
-        <button class="nav-btn" onclick="openTab('education', this)">Education</button>
-        <button class="nav-btn" onclick="openTab('skills', this)">Skills</button>
-    </div>
+    <section class="focus-strip shell" aria-label="Professional focus">
+      <div class="focus-item"><strong>Site supervision</strong><span>Civil and structural works</span></div>
+      <div class="focus-item"><strong>Quality inspection</strong><span>Drawings, materials, workmanship</span></div>
+      <div class="focus-item"><strong>Quantity verification</strong><span>BOQ / RAB and site checks</span></div>
+      <div class="focus-item"><strong>Project reporting</strong><span>Progress and photo records</span></div>
+    </section>
 
-    <!-- TAB 1: Summary -->
-    <div id="summary" class="tab-content active">
-        <div class="content-card">
-            <h2>Professional Summary</h2>
-            <p>Bachelor of Civil Engineering graduate from Gunadarma University (GPA 3.33) majoring in Transportation Engineering, with hands-on field experience in construction supervision, technical inspection, material verification (BOQ/RAB), and shop drawing drafting.</p>
-            <p>Proficient in technical applications such as AutoCAD and Microsoft Office to support project management and operational efficiency.</p>
-            <p>Possesses strong physical endurance in the field, adaptive communication skills, and a strict commitment to Occupational Health and Safety (OHS/K3) standards.</p>
-        </div>
-    </div>
+    <section class="section shell" id="experience">
+      <div class="section-heading">
+        <div><p class="section-kicker">Selected work</p><h2>Experience</h2></div>
+        <p class="section-intro">Field assignments across building, sanitation, drainage, and public-space works. Comfortable coordinating with site teams, checking execution against drawings and specifications, and keeping clear records.</p>
+      </div>
+      <div class="experience-list">
+        <article class="experience">
+          <div class="date">2024 - Present</div>
+          <div><h3>Field Delivery Partner</h3><p class="company">PT Shopee International Indonesia / Greater Jakarta Area</p><ul>
+            <li>Plan efficient daily routes and consistently meet operational delivery targets.</li>
+            <li>Work independently in changing outdoor conditions while following road-safety standards and operating procedures.</li>
+            <li>Resolve field issues promptly through professional customer communication.</li>
+          </ul></div>
+        </article>
+        <article class="experience">
+          <div class="date">2024 - 2025</div>
+          <div><h3>Site Supervisor / Project-Based</h3><p class="company">Freelance Construction Services / South Jakarta</p><ul>
+            <li>Supervised stamp-concrete work at the Lavande Apartment lobby, checked mix quality, and enforced OHS/K3 controls in a high-traffic area.</li>
+            <li>Led site operations for the Permata Hijau jogging track, prepared cost estimates, coordinated procurement, and monitored the schedule.</li>
+            <li>Prepared daily, weekly, and monthly progress reports and maintained project documentation.</li>
+          </ul></div>
+        </article>
+        <article class="experience">
+          <div class="date">2024 / 3 months</div>
+          <div><h3>Field Inspector / Project Contract</h3><p class="company">PT Duta Cipta Consultindo / East &amp; South Jakarta</p><ul>
+            <li>Checked site execution against approved shop drawings and verified materials and specifications against BOQ/RAB for sanitation renovation works.</li>
+            <li>Compiled periodic progress reports and photographic records for management and client updates.</li>
+          </ul></div>
+        </article>
+        <article class="experience">
+          <div class="date">2023 / 7 months</div>
+          <div><h3>Surveyor &amp; Drafter / Project Contract</h3><p class="company">PT Tri Bina Buana / Central Jakarta</p><ul>
+            <li>Surveyed proposed septic tank and WWTP/IPAL installation points in residential areas.</li>
+            <li>Prepared shop drawings and Detail Engineering Design (DED) using AutoCAD and communicated implementation plans to local communities.</li>
+          </ul></div>
+        </article>
+        <article class="experience">
+          <div class="date">2021 / 3 months</div>
+          <div><h3>Quality Control Engineer / Internship</h3><p class="company">PT Arkindo - PT Galatama, KSO / Depok</p><ul>
+            <li>Inspected building construction at the UPNVJ Faculty of Medicine project and identified structural defects before subsequent work phases.</li>
+            <li>Verified incoming material specifications, quality, and quantities; prepared inspection reports and site documentation.</li>
+          </ul></div>
+        </article>
+      </div>
+    </section>
 
-    <!-- TAB 2: Experience -->
-    <div id="experience" class="tab-content">
-        <div class="content-card">
-            <h2>Work Experience</h2>
-            
-            <div class="job-title">Field Delivery Partner (2024 - Present)</div>
-            <div class="company-name">PT Shopee International Indonesia, Greater Jakarta Area</div>
-            <ul>
-                <li><strong>Route Efficiency & Management:</strong> Ensured daily on-time delivery performance through optimal route planning and consistently met high operational targets.</li>
-                <li><strong>Field Operational Resilience:</strong> Worked independently and reliably in outdoor environments under dynamic weather conditions.</li>
-                <li><strong>Safety & SOP Compliance:</strong> Strictly adhered to road safety standards and operational procedures to minimize workplace safety risks.</li>
-                <li><strong>Customer Service & Problem Solving:</strong> Maintained professional communication with customers while resolving field issues promptly.</li>
-            </ul>
+    <section class="section shell" id="education">
+      <div class="section-heading">
+        <div><p class="section-kicker">Academic background</p><h2>Education</h2></div>
+        <p class="section-intro">A civil engineering foundation with a concentration in transportation engineering and practical exposure to construction supervision, inspection, and technical drafting.</p>
+      </div>
+      <div class="education-row">
+        <div><h3>Gunadarma University</h3><p>Bachelor of Engineering (S.T.) / Civil Engineering, Transportation Engineering concentration / GPA 3.33 out of 4.00</p></div>
+        <span class="education-year">2018 - 2023</span>
+      </div>
+    </section>
 
-            <div class="job-title">Site Supervisor (Project-Based) (2024-2025)</div>
-            <div class="company-name">FREELANCE CONSTRUCTION SERVICES, South Jakarta</div>
-            <ul>
-                <li><strong>Quality Control & OHS (Lavande Apartment Lobby Project):</strong> Supervised stamp concrete execution in the lobby area, controlled material mix quality, and enforced OHS/K3 safety standards in high-traffic public areas.</li>
-                <li><strong>Operations & Cost Management (Jogging Track Project - Permata Hijau):</strong> Led site team operations, prepared cost estimates, managed equipment and material procurement, and controlled project timelines.</li>
-                <li><strong>Progress Reporting & Documentation:</strong> Prepared daily, weekly, and monthly progress reports while maintaining comprehensive project documentation.</li>
-            </ul>
+    <section class="section shell" id="certificates">
+      <div class="section-heading">
+        <div><p class="section-kicker">Training documents</p><h2>Certificates</h2></div>
+        <p class="section-intro">Open a certificate PDF. The duplicate Drainage Network certificate in the source folder is listed once.</p>
+      </div>
+      <div class="certificate-grid">
+        <a class="certificate" href="sertifikat/Seriticate%20of%20Planing%20a%20Drainage%20Network%20Sytem_A%27ang%20Kurnia.pdf"><span>Planning a Drainage Network System</span><span>PDF / Open</span></a>
+        <a class="certificate" href="sertifikat/Sertificate%20of%20Analysis%20of%20Planing%20Area_A%27ang%20Kurnia.pdf"><span>Analysis of Planning Area</span><span>PDF / Open</span></a>
+        <a class="certificate" href="sertifikat/Sertificate%20of%20Carry%20Out%20The%20Network%20of%20Survey%20and%20Field%20Investigation_A%27ang%20Kurnia.pdf"><span>Network Survey and Field Investigation</span><span>PDF / Open</span></a>
+        <a class="certificate" href="sertifikat/Sertificate%20of%20Communication%20at%20Work%20and%20Prepatory%20Work_A%27ang%20Kurnia.pdf"><span>Communication at Work and Preparatory Work</span><span>PDF / Open</span></a>
+        <a class="certificate" href="sertifikat/Sertificate%20of%20Making%20Detail%20Desain%20of%20The%20Drainase%20Network_A%27ang%20Kurnia.pdf"><span>Detail Design of the Drainage Network</span><span>PDF / Open</span></a>
+        <a class="certificate" href="sertifikat/Sertificate%20of%20Managing%20Project%20with%20Microsoft%20Project_A%27ang%20Kurnia.pdf"><span>Managing Projects with Microsoft Project</span><span>PDF / Open</span></a>
+        <a class="certificate" href="sertifikat/Sertificate%20Prakerja_A%27ang%20Kuria.pdf"><span>Prakerja Certificate</span><span>PDF / Open</span></a>
+      </div>
+      <p class="training-note">Additional training listed on CV: Basic AutoCAD (2023), Drainage Network (2021), and OHS &amp; Field Survey (2019-2020).</p>
+    </section>
 
-            <div class="job-title">Field Inspector (Project Contract) (2024-3 Months)</div>
-            <div class="company-name">PT. DUTA CIPTA CONSULTINDO, East & South Jakarta</div>
-            <ul>
-                <li><strong>Drawing Compliance Inspection:</strong> Supervised physical execution on site to ensure precise alignment with approved shop drawings.</li>
-                <li><strong>Specification & Material Verification (Sanitation Renovation Project):</strong> Inspected and verified material quality and specification compliance for renovation projects to ensure 100% alignment with BOQ/RAB documents.</li>
-                <li><strong>Progress Control & Administration:</strong> Compiled periodic progress reports (daily, weekly, monthly) and managed photographic evidence for management and client reporting.</li>
-            </ul>
-
-            <div class="job-title">Surveyor & Drafter (Project Contract) (2023-7 Months)</div>
-            <div class="company-name">PT. TRI BINA BUANA, Central Jakarta</div>
-            <ul>
-                <li><strong>Field Survey & Mapping (Septic Tank & WWTP/IPAL Project):</strong> Identified optimal installation points for sanitation infrastructure in residential areas.</li>
-                <li><strong>Technical Design & Drafting:</strong> Produced shop drawings and Detail Engineering Design (DED) using AutoCAD.</li>
-                <li><strong>Community Outreach:</strong> Engaged with local communities to socialize the technical implementation and benefits of sanitation systems.</li>
-            </ul>
-
-            <div class="job-title">Quality Control Engineer (Internship) (2021-3 Months)</div>
-            <div class="company-name">PT. ARKINDO - PT. GALATAMA, KSO, Depok</div>
-            <ul>
-                <li><strong>Structural Quality Inspection (UPNVJ Faculty of Medicine Building Project):</strong> Conducted quality inspections on physical building construction to identify structural defects prior to subsequent construction phases.</li>
-                <li><strong>Material Testing:</strong> Verified specifications, quality, and quantity of incoming construction materials delivered to the site.</li>
-                <li><strong>QC Reporting:</strong> Prepared quality inspection reports and site technical documentation.</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- TAB 3: Education -->
-    <div id="education" class="tab-content">
-        <div class="content-card">
-            <h2>Education</h2>
-            <div class="job-title">GUNADARMA UNIVERSITY</div>
-            <div class="company-name">Bachelor of Engineering (S.T.) - Civil Engineering (2018-2023)</div>
-            <p>Major & GPA: Transportation Engineering Concentration | GPA: 3.33/4.00</p>
-        </div>
-    </div>
-
-    <!-- TAB 4: Skills -->
-    <div id="skills" class="tab-content">
-        <div class="content-card">
-            <h2>Skills & Certifications</h2>
-            
-            <p><strong>Technical Skills / Software:</strong> <br>
-            <span class="skills-tag">AutoCAD</span> <span class="skills-tag">Microsoft Office</span> <span class="skills-tag">Technical Drafting</span> <span class="skills-tag">QC/QS</span> <span class="skills-tag">Cost Estimation (BOQ/RAB)</span>
-            </p>
-            
-            <p><strong>Interpersonal Skills:</strong> <br>
-            <span class="skills-tag">Site Leadership</span> <span class="skills-tag">Project Supervision</span> <span class="skills-tag">Problem Solving</span> <span class="skills-tag">Adaptive Communication</span> <span class="skills-tag">Time Management</span> <span class="skills-tag">OHS/K3 Compliance</span>
-            </p>
-            
-            <p><strong>Certifications & Training:</strong> <br>
-            <ul>
-                <li>Basic AutoCAD Training (2023)</li>
-                <li>Drainage Network Training (2021)</li>
-                <li>OHS & Field Survey Training (2019-2020)</li>
-            </ul>
-            </p>
-        </div>
-    </div>
-
-</div>
-
-<!-- JavaScript for Tab Logic -->
-<script>
-    function openTab(tabId, element) {
-        // Hide all tab contents
-        var contents = document.getElementsByClassName("tab-content");
-        for (var i = 0; i < contents.length; i++) {
-            contents[i].classList.remove("active");
-        }
-        
-        // Remove 'active' class from all buttons
-        var buttons = document.getElementsByClassName("nav-btn");
-        for (var i = 0; i < buttons.length; i++) {
-            buttons[i].classList.remove("active");
-        }
-        
-        // Show the selected tab content
-        document.getElementById(tabId).classList.add("active");
-        
-        // Add 'active' class to the clicked button
-        element.classList.add("active");
-    }
-</script>
-
+    <section class="contact-band shell" id="contact">
+      <h2>Ready to support your next site team.</h2>
+      <div class="contact-details">
+        <a href="mailto:goankproject027@gmail.com">goankproject027@gmail.com</a>
+        <a href="tel:+6285281080925">+62 852-8108-0925</a>
+        <a href="https://wa.me/6285281080925" target="_blank" rel="noopener noreferrer">WhatsApp / South Jakarta, Indonesia</a>
+      </div>
+    </section>
+  </main>
+  <footer><div class="shell">A'ang Kurnia, S.T. / Civil Engineer</div></footer>
 </body>
 </html>
